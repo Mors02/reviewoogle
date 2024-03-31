@@ -17,7 +17,8 @@ def create_index(path):
     # sentiment_score
     # review_score
     # review_votes
-    schema = Schema(title=TEXT(stored=True), 
+    schema = Schema(id=NUMERIC(numtype=int, stored=True),
+                    title=TEXT(stored=True), 
                     processed_title=TEXT(stored=True), 
                     review=TEXT(stored=True),
                     processed_review=TEXT(stored=True),
@@ -39,14 +40,28 @@ def index(filename, path):
         ix = open_dir(path)
         writer = ix.writer()
 
+        id=0
+
+        # OPEN THE CSV FILE AND READ EACH LINE
         with open(filename, 'r') as csvfile:
             datareader = csv.reader(csvfile)
             for row in datareader:
                 #PREPROCESS
                 processed_data = Preprocessor.process_document(row)
-                print(processed_data)
+                #print(processed_data)
                 #SENTIMENT ANALYSIS
                 sentiment_analysis = classifier(row[2])
+                print(sentiment_analysis)
                 #STORE INSIDE THE WRITER
-                #writer.add_document(title=u"First document", path=u"/a", content=u"This is the first documents we've added!")
-        #writer.commit()
+                writer.add_document(id=id, 
+                                    title=row[1], 
+                                    processed_title=processed_data[0], 
+                                    review=row[2],
+                                    processed_review=processed_data[1],
+                                    sentiment=sentiment_analysis[0][0]["label"],
+                                    sentiment_score=sentiment_analysis[0][0]["score"],
+                                    review_score=row[3],
+                                    review_votes=row[4]
+                                    )
+                id = id+1
+        writer.commit()
