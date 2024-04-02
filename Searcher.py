@@ -4,12 +4,8 @@ from whoosh.fields import *
 from whoosh.qparser import QueryParser, syntax, query
 import os, os.path
 
-
-
-
-
-
-
+#DOCS:
+#https://whoosh.readthedocs.io/en/latest/searching.html
 
 def base_search(indexPath, query_terms):
     ix = open_dir(indexPath)
