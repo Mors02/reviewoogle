@@ -1,11 +1,9 @@
 from whoosh.index import create_in, exists_in, open_dir
 from whoosh.fields import *
 import os, os.path
-from transformers import pipeline
 import Preprocessor
 import csv
-
-classifier = pipeline("text-classification", model="j-hartmann/emotion-english-distilroberta-base", top_k=None, truncation=True)
+import Sentiment
 
 def create_index(path):
     # Colonne della tabella:
@@ -50,7 +48,7 @@ def index(filename, path):
                 processed_data = Preprocessor.process_document(row)
                 #print(processed_data)
                 #SENTIMENT ANALYSIS
-                sentiment_analysis = classifier(row[2])
+                sentiment_analysis = Sentiment.classify(row[2])
                 print(sentiment_analysis)
                 #STORE INSIDE THE WRITER
                 writer.add_document(id=id, 

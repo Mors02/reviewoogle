@@ -19,17 +19,23 @@ def Timer(func):
 
 #TO SEARCH (DIVIDED BY SEARCH TYPE)
 @Timer
-def base_search():
-    Searcher.base_search(indexPath, u"should i play black ops 3?")
+def base_search(searchterm):
+    Searcher.base_search(indexPath, searchterm)
 
 @Timer
-def processed_search():
-    Searcher.processed_search(indexPath, u"should i play black ops 3?")
+def processed_search(searchterm):
+    Searcher.processed_search(indexPath, searchterm)
 
+@Timer
+def processed_and_sentiment_search(searchterm):
+    Searcher.processed_and_sentiment_search(indexPath, searchterm)
 
-base_search()
-processed_search()
+searchterm = "dota 2 good"
+
+#base_search(searchterm)
+#processed_search(searchterm)
+processed_and_sentiment_search(searchterm)
 
 #TEST
-#should I play Dota2? -> base_search gives a lot of other games in the results, processed_search is better but slower
-#
+#should I play Dota 2? -> base_search gives a lot of other games in the results, processed_search is also faster but first result is not positive
+#dota 2 good -> returns a review where it isnt good
