@@ -6,6 +6,10 @@
 - whoosh
 - torch
 - xformers
+- numpy
+- scipy
+- pylib-openblas
+- gensim
 
 # Descrizione
 Un semplice search engine per recensioni di giochi di steam. Diviso in 4 versioni:

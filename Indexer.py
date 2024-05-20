@@ -48,18 +48,17 @@ def index(filename, path):
                 processed_data = Preprocessor.process_document(row)
                 #print(processed_data)
                 #SENTIMENT ANALYSIS
-                sentiment_analysis = Sentiment.classify(row[2])
-                print(sentiment_analysis)
+                sentiment_analysis = Sentiment.classify(row[2])                
                 #STORE INSIDE THE WRITER
                 writer.add_document(id=id, 
                                     title=row[1], 
                                     processed_title=processed_data[0], 
-                                    review=row[2],
-                                    processed_review=processed_data[1],
+                                    review=row[1] +" "+ row[2],
+                                    processed_review=processed_data[0] + processed_data[1],
                                     sentiment=sentiment_analysis[0][0]["label"],
                                     sentiment_score=sentiment_analysis[0][0]["score"],
                                     review_score=row[3],
                                     review_votes=row[4]
-                                    )
+                                    )            
                 id = id+1
         writer.commit()
