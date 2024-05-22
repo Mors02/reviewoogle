@@ -14,7 +14,7 @@ def load():
 
 def expansion(model, query):
     expanded_query = []
-    query = utils.simple_preprocess(query)
+    #query = utils.simple_preprocess(query)
     for word in query:
         try:
             similar_words = model.wv.most_similar(word, topn=1)

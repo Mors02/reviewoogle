@@ -8,6 +8,7 @@ import os, os.path
 import Preprocessor
 import Sentiment
 from config import indexPath
+import Worder
 
 howManyResults = 10
 printData = True
@@ -71,7 +72,7 @@ def processed_search(query_terms):
                 print(str(rev["id"]) + " | " + rev["title"] + ": " + rev["review"])
 
 
-def processed_and_sentiment_search(query_terms, sentiment):
+def processed_and_sentiment_search(query_terms):
 
     print("RICERCA PROCESSATA E SENTIMENT")
     ix = open_dir(indexPath)
@@ -123,7 +124,7 @@ def processed_and_sentiment_search(query_terms, sentiment):
 
 def title_search(query_terms, title):
 
-    print("RICERCA PROCESSATA")
+    print("RICERCA PER TITOLO")
     ix = open_dir(indexPath)
 
     processed_query = Preprocessor.process(query_terms, True, True)
@@ -147,4 +148,30 @@ def title_search(query_terms, title):
             for rev in review_results:
                 print(str(rev.score) + " | " + rev["title"] + ": " + rev["review"])
 
+def processed_and_word2vec_search(query_terms):
+
+    print("RICERCA PER TITOLO")
+    model = Worder.load()
+    ix = open_dir(indexPath)
+
+    processed_query = Preprocessor.process(query_terms, True, True)
+    Worder.expansion(model, processed_query)
+
+    qp = QueryParser("processed_review", schema=ix.schema, group=syntax.OrGroup).parse(" ".join(processed_query))
+    tp = QueryParser("processed_title", schema=ix.schema, group=syntax.OrGroup).parse(" ".join(processed_query))    
+
+    q = And([qp, tp])
+    #tq = tp.parse(processed_query)
+
+    with ix.searcher() as searcher:
+        #SEARCH THE QUERY
+        review_results = searcher.search(q, limit=howManyResults)
+        #title_results = searcher.search(tp, limit=howManyResults*2)
+        #BOOST A LITTLE THE TITLE
+        #review_results.upgrade(title_results)
+
+        #PRINT
+        if (printData):
+            for rev in review_results:
+                print(str(rev.score) + " | " + rev["title"] + ": " + rev["review"])  
 

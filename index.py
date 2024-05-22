@@ -35,6 +35,9 @@ def processed_and_sentiment_search(searchterm, sentiment):
 def processed_and_title_search(searchterm, title):
     Searcher.title_search(searchterm, title)
 
+@Timer
+def processed_and_word2vec_search(searchterm):
+    Searcher.processed_and_word2vec_search(searchterm)
 
 searchterm = "dota 2 good game"
 title = "dota 2"
@@ -42,11 +45,9 @@ sentiment = "joy"
 
 #base_search(searchterm)
 #processed_search(searchterm)
-processed_and_sentiment_search(searchterm, sentiment)
+#processed_and_sentiment_search(searchterm, sentiment)
 #processed_and_title_search(searchterm, title)
-#model = Worder.load()
-#expanded_query = Worder.expansion(model, searchterm)
-#print(expanded_query)
+processed_and_word2vec_search(searchterm)
 
 #TEST
 #should I play Dota 2? -> base_search gives a lot of other games in the results, processed_search is also faster but first result is not positive
