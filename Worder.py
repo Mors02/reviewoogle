@@ -12,13 +12,14 @@ def load():
         print("Modello non inizializzato.")
     
 
-def expansion(model, query):
+def expansion(model, query, preprocess=False):
     expanded_query = []
-    #query = utils.simple_preprocess(query)
+    if (preprocess):
+        query = utils.simple_preprocess(query)
     for word in query:
         try:
-            similar_words = model.wv.most_similar(word, topn=1)
-            expanded_query.extend(['(', word, '=', similar_words[0][0], ')'])
+            similar_words = model.wv.most_similar(word, topn=3)            
+            expanded_query.extend(['(', word, 'OR', similar_words[0][0], ')'])
         except KeyError:
             # se la parola non è nel vocabolario
             expanded_query.append(word)

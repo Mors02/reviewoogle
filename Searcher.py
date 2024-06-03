@@ -76,27 +76,7 @@ def processed_and_sentiment_search(query_terms):
 
     print("RICERCA PROCESSATA E SENTIMENT")
     ix = open_dir(indexPath)
-    '''
-    processed_query = Preprocessor.process(query_terms, True, True)
-
-    #customScorer = scoring.FunctionWeighting(custom_scorer)
-
-    processed_query = Preprocessor.process(query_terms, True, True)
-    parser = MultifieldParser(["processed_review", "processed_title"], schema=ix.schema, group=syntax.OrGroup)
-    #qp = QueryParser("processed_review", schema=ix.schema, group=syntax.OrGroup)
-    sp = QueryParser("sentiment", schema=ix.schema)
-
-    #query_terms = u"best game dota"
-
-    q = parser.parse(" ".join(processed_query))    
-    tq = sp.parse(sentiment)
-    #q = qp.parse(processed_query)    
-    #tq = tp.parse(processed_query)
-
     
-    #print(sentiment)
-    #custom_scorer = CustomScorer()
-    '''
     processed_query = Preprocessor.process(query_terms, True, True)
 
     qcontent = MultifieldParser(["processed_review", "processed_title"], schema=ix.schema, group=syntax.OrGroup).parse(" ".join(processed_query))
@@ -148,17 +128,46 @@ def title_search(query_terms, title):
             for rev in review_results:
                 print(str(rev.score) + " | " + rev["title"] + ": " + rev["review"])
 
-def processed_and_word2vec_search(query_terms):
+def word2vec_and_sentiment_search(query_terms):
+    print("RICERCA PROCESSATA, SENTIMENT E WORD2VEC")
+    ix = open_dir(indexPath)
+    model = Worder.load()
+    
+    processed_query = Preprocessor.process(query_terms, True, True)
+    expanded_query = Worder.expansion(model, processed_query)
+    qcontent = MultifieldParser(["processed_review", "processed_title"], schema=ix.schema, group=syntax.OrGroup).parse(expanded_query)
+    qtitle = QueryParser("processed_title", schema=ix.schema, group=syntax.OrGroup).parse(expanded_query)
+    retrieved_sentiment = Sentiment.classify(query_terms)[0][0]
+    #qsentiment = QueryParser("sentiment", schema=ix.schema).parse(retrieved_sentiment["label"])    
+    q = And([qcontent, qtitle])
 
-    print("RICERCA PER TITOLO")
+    with ix.searcher() as searcher:
+        #SEARCH THE QUERY
+        review_results = searcher.search(q, limit=howManyResults)
+        #GET COEFFICIENT BASED ON SENTIMENT RELATIONSHIP AND REORDER
+        combined_results = []
+        for (index, rev) in enumerate(review_results):
+            res = dict(rev)
+            res["score"] = rev.score + Sentiment.getWeight(retrieved_sentiment["label"], rev["sentiment"], rev["sentiment_score"])            
+            combined_results.append(res)
+        combined_results = sorted(combined_results, key=lambda item: item["score"], reverse=True)
+
+        #PRINT
+        if (printData):
+            for rev in combined_results:
+                #print(rev)
+                print(str(rev["score"]) + " | " + rev["title"] + ": " + rev["review"] + " /" + str(rev["sentiment"]))
+
+def processed_and_word2vec_search(query_terms):
+    print("RICERCA PROCESSATA E WORD2VEC")
     model = Worder.load()
     ix = open_dir(indexPath)
 
     processed_query = Preprocessor.process(query_terms, True, True)
-    Worder.expansion(model, processed_query)
-
-    qp = QueryParser("processed_review", schema=ix.schema, group=syntax.OrGroup).parse(" ".join(processed_query))
-    tp = QueryParser("processed_title", schema=ix.schema, group=syntax.OrGroup).parse(" ".join(processed_query))    
+    expanded_query = Worder.expansion(model, processed_query)
+    
+    qp = QueryParser("processed_review", schema=ix.schema, group=syntax.OrGroup).parse(expanded_query)
+    tp = QueryParser("processed_title", schema=ix.schema, group=syntax.OrGroup).parse(expanded_query)    
 
     q = And([qp, tp])
     #tq = tp.parse(processed_query)
@@ -166,12 +175,57 @@ def processed_and_word2vec_search(query_terms):
     with ix.searcher() as searcher:
         #SEARCH THE QUERY
         review_results = searcher.search(q, limit=howManyResults)
-        #title_results = searcher.search(tp, limit=howManyResults*2)
-        #BOOST A LITTLE THE TITLE
-        #review_results.upgrade(title_results)
 
         #PRINT
         if (printData):
             for rev in review_results:
                 print(str(rev.score) + " | " + rev["title"] + ": " + rev["review"])  
 
+def advanced_search(query_terms):
+    return
+''' NON FUNZIONA MOLTO BENE
+    ix = open_dir(indexPath)
+
+    processed_query = Preprocessor.process(query_terms, True, True)
+    print(processed_query)
+    #expanded_query = Worder.expansion(model, processed_query)
+    shouldSentiment = input("Ricerca per sentiment - 1. Si     2. No\n> ")
+    if (shouldSentiment == "1"):
+        retrieved_sentiment = Sentiment.classify(query_terms)[0][0]
+
+    shouldWord2vec = input("Espansione con word2vec - 1. Si     2. No\n> ")
+    if (shouldWord2vec == "1"):
+        model = Worder.load()
+        query_terms = Worder.expansion(model, query_terms.split())
+        print(query_terms)
+    print(query_terms)
+    qp = QueryParser("processed_review", schema=ix.schema).parse(query_terms)
+    print(qp)
+
+    #tp = QueryParser("processed_title", schema=ix.schema, group=syntax.OrGroup).parse(query_terms)    
+
+    with ix.searcher() as searcher:
+        #SEARCH THE QUERY
+        review_results = searcher.search(qp, limit=howManyResults)
+
+        if (shouldSentiment == "1"):
+            combined_results = reorder_results_with_sentiment(review_results, retrieved_sentiment)
+            review_results = combined_results
+
+        #PRINT
+        if (printData):
+            for rev in review_results:
+                if (shouldSentiment != "1"):
+                    print(str(rev.score) + " | " + rev["title"] + ": " + rev["review"])  
+                else:
+                    print(str(rev["score"]) + " | " + rev["title"] + ": " + rev["review"] + " /" + rev["sentiment"])
+'''
+
+def reorder_results_with_sentiment(review_results, retrieved_sentiment):
+    combined_results = []
+    for (index, rev) in enumerate(review_results):
+        res = dict(rev)
+        res["score"] = rev.score * Sentiment.getWeight(retrieved_sentiment["label"], rev["sentiment"], rev["sentiment_score"])            
+        combined_results.append(res)
+    combined_results = sorted(combined_results, key=lambda item: item["score"], reverse=True)
+    return combined_results
