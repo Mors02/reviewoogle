@@ -182,7 +182,7 @@ def processed_and_word2vec_search(query_terms):
     processed_query = Preprocessor.process(query_terms, True, True)
     expanded_query = Worder.expansion(model, processed_query)
     
-    qp = QueryParser("processed_review", schema=ix.schema, group=syntax.OrGroup).parse(expanded_query)
+    qp = QueryParser("processed_review", schema=ix.schema, group=syntax.AndGroup).parse(expanded_query)
     tp = QueryParser("processed_title", schema=ix.schema, group=syntax.OrGroup).parse(expanded_query)    
 
     q = And([qp, tp])

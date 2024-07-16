@@ -1,0 +1,372 @@
+QUERY 1:
+World at War are there custom zombie maps
+										
+((processed_review:world AND processed_review:war AND processed_review:custom AND processed_review:zombi AND processed_review:map) AND (processed_title:world OR processed_title:war OR processed_title:custom OR processed_title:zombi OR processed_title:map))
+										
+Ricerca Base:
+DCG	                7,265988484
+Average Precision	1
+Tempo	           	24,35
+Precisione	        0,6666666667
+
+Ricerca Processata:
+DCG	               	19,00831966
+Average Precision	0,9924874687
+Tempo	            4,25
+Precisione	        0,6451612903
+
+Ricerca Processata + Sentiment:
+DCG	                21,69995788
+Average Precision	0,994321762
+Tempo	            3,66
+Precisione	        0,9583333333
+
+Ricerca Processata + W2V:
+DCG					21,45394955
+Average Precision	0,9875451887
+Tempo				16,18
+Precisione			0,9090909091
+
+Ricerca Processata + Sentiment + W2V:
+DCG	               	11,71520404
+Average Precision	0,7345598846
+Tempo	            3,81
+Precisione	        0,3846153846
+
+------------------------------------
+
+QUERY 2:
+What is the best game ever?
+										
+((processed_review:best AND processed_review:game AND processed_review:ever) AND (processed_title:best OR processed_title:game OR processed_title:ever))										
+Ricerca Base:
+DCG	                8,48316702
+Average Precision	0,622312834
+Tempo	            10,21
+Precisione	        0,68
+
+Ricerca Processata:
+DCG	               	12,30765267
+Average Precision	0,6614750311
+Tempo	            14,15
+Precisione	        0,8333333333
+
+Ricerca Processata + Sentiment:
+DCG	                9,466337647
+Average Precision	0,5550349306
+Tempo	            7,79
+Precisione	        0,4782608696
+
+Ricerca Processata + W2V:
+DCG					15,50691685
+Average Precision	0,98290796
+Tempo				7,71
+Precisione			0,9047619048
+
+Ricerca Processata + Sentiment + W2V:
+DCG	               	13,39640128
+Average Precision	0,8061854554
+Tempo	            18,42
+Precisione	        0,6363636364
+
+------------------------------------
+
+QUERY 3:
+Black ops 2 or Black ops 3 		
+								
+(processed_review:black OR processed_review:op) AND (processed_title:black OR processed_title:op)	
+									
+Ricerca Base:
+DCG	                4,892789261
+Average Precision	0,6666666667
+Tempo	           	2,14
+Precisione	        0,1111111111
+
+Ricerca Processata:
+DCG	                7,069859249
+Average Precision	0,6419017094
+Tempo	            4,25
+Precisione	        0,3225806452
+
+Ricerca Processata + Sentiment:
+DCG	                6,025438025
+Average Precision	0,3207213839
+Tempo	            2,07
+Precisione	        0,2307692308
+
+Ricerca Processata + W2V:
+DCG					6,423951629
+Average Precision	0,347870815
+Tempo				5,96
+Precisione			0,2916666667
+
+Ricerca Processata + Sentiment + W2V:
+DCG	                8,772609414
+Average Precision	0,4551635097
+Tempo	            3,81
+Precisione	        0,3076923077
+
+------------------------------------
+
+QUERY 4:
+What is the worst RPG?	
+									
+((processed_review:worst AND processed_review:rpg) AND (processed_title:worst OR processed_title:rpg))	
+									
+Ricerca Base:
+DCG	                2,745641241
+Average Precision	0,2590809191
+Tempo	            1,86
+Precisione	        0,2083333333
+
+Ricerca Processata:
+DCG	                6,545807017
+Average Precision	0,3017731689
+Tempo	            2,23
+Precisione	        0,4516129032
+
+Ricerca Processata + Sentiment:
+DCG	                0,6309297536
+Average Precision	0,3333333333
+Tempo	            1,83
+Precisione	        0,04166666667
+
+Ricerca Processata + W2V:
+DCG					0,2313782132
+Average Precision	0,05
+Tempo				6,58
+Precisione			0,03846153846
+
+Ricerca Processata + Sentiment + W2V:
+DCG	                1,022059407
+Average Precision	0,1315850816
+Tempo	            10,66
+Precisione	        0,1153846154
+
+------------------------------------
+
+QUERY 5:
+Dragon Age Origins good plot 
+										
+((processed_review:dragon AND processed_review:age AND processed_review:origin AND processed_review:good AND processed_review:plot) AND (processed_title:dragon OR processed_title:age OR processed_title:origin OR processed_title:good OR processed_title:plot))
+													
+Ricerca Base:
+DCG	                5,021911538
+Average Precision	0,6032679739
+Tempo	            5,21
+Precisione	        0,3333333333
+ 
+Ricerca Processata:
+DCG	               	10,31357725
+Average Precision	0,6863854773
+Tempo	            3,05
+Precisione	        0,3548387097
+
+Ricerca Processata + Sentiment:
+DCG	                7,335282712
+Average Precision	0,4378401664
+Tempo	            38,44
+Precisione	        0,4761904762
+
+Ricerca Processata + W2V:
+DCG					7,634832303
+Average Precision	0,9484126984
+Tempo				6,12
+Precisione			0,8571428571
+
+Ricerca Processata + Sentiment + W2V:
+DCG	                8,583942763
+Average Precision	0,613468476
+Tempo	           	3,03
+Precisione	        0,5909090909
+
+------------------------------------
+
+QUERY 6:
+Resident Evil is it scary?
+										
+((processed_review:resid AND processed_review:evil AND processed_review:scari) AND (processed_title:resid OR processed_title:evil OR processed_title:scari))										
+Ricerca Base:
+DCG	                0
+Average Precision	0
+Tempo	            3,65
+Precisione	        0
+ 
+Ricerca Processata:
+DCG	               	13,83826395
+Average Precision	0,9195933014
+Tempo	            3,1
+Precisione	        0,6129032258
+
+Ricerca Processata + Sentiment:
+DCG	               	11,59314008
+Average Precision	0,956462585
+Tempo	            3,77
+Precisione	        0,5833333333
+
+Ricerca Processata + W2V:
+DCG					18,31350389
+Average Precision	0,9639265046
+Tempo				5,31
+Precisione			0,92
+
+Ricerca Processata + Sentiment + W2V:
+DCG	               	11,53178831
+Average Precision	0,9620879121
+Tempo	            6,26
+Precisione	        0,52
+
+------------------------------------
+
+QUERY 7:
+Should I buy Far Cry Primal?
+										
+((processed_review:buy AND processed_review:far AND processed_review:cri AND processed_review:primal) AND (processed_title:buy OR processed_title:far OR processed_title:cri OR processed_title:primal))
+																	
+Ricerca Base:
+DCG	                0
+Average Precision	0
+Tempo	            11,86
+Precisione	        0
+ 
+Ricerca Processata:
+DCG	               	14,47851931
+Average Precision	0,8290383632
+Tempo	            3,09
+Precisione	        0,64
+
+Ricerca Processata + Sentiment:
+DCG	               	12,90556821
+Average Precision	0,7766547015
+Tempo	            2,44
+Precisione	        0,7619047619
+
+Ricerca Processata + W2V:
+DCG					15,87765808
+Average Precision	1
+Tempo				5,95
+Precisione			1
+
+Ricerca Processata + Sentiment + W2V:
+DCG	               	12,53833176
+Average Precision	0,7321121707
+Tempo	            5,19
+Precisione	        0,7368421053
+
+------------------------------------
+
+QUERY 8:
+How fun is Jackbox Party?	
+									
+((processed_review:fun AND processed_review:jackbox AND processed_review:parti) AND (processed_title:fun OR processed_title:jackbox OR processed_title:parti))										
+Ricerca Base:
+DCG	                0
+Average Precision	0
+Tempo	            1,42
+Precisione	        0
+ 
+Ricerca Processata:
+DCG	               	19,8285745
+Average Precision	1
+Tempo	            1,58
+Precisione	        0,6774193548
+
+Ricerca Processata + Sentiment:
+DCG	               	19,42252218
+Average Precision	1
+Tempo	            4,32
+Precisione	        0,96
+
+Ricerca Processata + W2V:
+DCG					22,73855667
+Average Precision	1
+Tempo				6,52
+Precisione			1
+
+Ricerca Processata + Sentiment + W2V:
+DCG	               	21,11466881
+Average Precision	1
+Tempo	            3,81
+Precisione	        1
+
+-------------------------------------
+
+QUERY 9:
+Is Terraria worth playing with friends?	
+									
+((processed_review:terraria AND processed_review:worth AND processed_review:play AND processed_review:friend) AND (processed_title:terraria OR processed_title:worth OR processed_title:play OR processed_title:friend))	
+															
+Ricerca Base:
+DCG	                0
+Average Precision	0
+Tempo	            2,82
+Precisione	        0
+ 
+Ricerca Processata:
+DCG	               	15,31056208
+Average Precision	0,779224636
+Tempo	            3,12
+Precisione	        0,4838709677
+
+Ricerca Processata + Sentiment:
+DCG	               	18,72010692
+Average Precision	0,9307333383
+Tempo	            5,28
+Precisione	        0,6956521739
+
+Ricerca Processata + W2V:
+DCG					13,93462465
+Average Precision	0,6547987758
+Tempo				6,24
+Precisione			0,7083333333
+
+Ricerca Processata + Sentiment + W2V:
+DCG	               	12,13086481
+Average Precision	0,5031866831
+Tempo	            5,3
+Precisione	        0,48
+
+-------------------------------------
+
+QUERY 10:
+No Mans Sky boring	
+									
+((processed_review:man AND processed_review:sky AND processed_review:bore) AND (processed_title:man OR processed_title:sky OR processed_title:bore))										
+Ricerca Base:
+DCG	                4,761859507
+Average Precision	0,8055555556
+Tempo	            1,99
+Precisione	        0,75
+ 
+Ricerca Processata:
+DCG	               	14,46798236
+Average Precision	0,6480785842
+Tempo	            1,47
+Precisione	        0,5806451613
+
+Ricerca Processata + Sentiment:
+DCG	                9,508789385
+Average Precision	0,6019529104
+Tempo	            4,59
+Precisione	        0,5652173913
+
+Ricerca Processata + W2V:
+DCG					12,7533546
+Average Precision	1
+Tempo				6,4
+Precisione			1
+
+Ricerca Processata + Sentiment + W2V:
+DCG	               	10,66051914
+Average Precision	0,7093634846
+Tempo	            5,94
+Precisione	        0,7826086957
+
+-------------------------------------
+
+RISULTATI:
+			Base	          	Processata	        Processata + Sentiment		Processata + W2v		Processata + Sentiment + W2V	
+DCG	     	3,042571581	  		12,6623311	        11,6677143		        	13,46373482				11,04443303	
+MAP	     	0,369780303	  		0,7158184571	    0,6573721778		        0,7885461943			0,6516127576	
+Tempo (s)   5,387125	        3,513847222	        7,037819444		        	6,639					5,557	
+Precision   0,2541111111	  	0,5150752688	    0,570966157		        	0,7590995671			0,543903122	
