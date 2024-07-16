@@ -1,7 +1,7 @@
 QUERY 1:
-World at War are there custom zombie maps
-										
-((processed_review:world AND processed_review:war AND processed_review:custom AND processed_review:zombi AND processed_review:map) AND (processed_title:world OR processed_title:war OR processed_title:custom OR processed_title:zombi OR processed_title:map))
+UIN - L'utente vuole sapere una specifica funzionalità di un gioco specifico, con linguaggio molto colloquiale
+query naturale - World at War are there custom zombie maps
+query tradotta - ((processed_review:world AND processed_review:war AND processed_review:custom AND processed_review:zombi AND processed_review:map) AND (processed_title:world OR processed_title:war OR processed_title:custom OR processed_title:zombi OR processed_title:map))
 										
 Ricerca Base:
 DCG	                7,265988484
@@ -36,9 +36,10 @@ Precisione	        0,3846153846
 ------------------------------------
 
 QUERY 2:
-What is the best game ever?
-										
-((processed_review:best AND processed_review:game AND processed_review:ever) AND (processed_title:best OR processed_title:game OR processed_title:ever))										
+UIN - L'utente vuole sapere una informazione generale, indipendente dal gioco. 
+query naturale - What is the best game ever?						
+query tradotta - ((processed_review:best AND processed_review:game AND processed_review:ever) AND (processed_title:best OR processed_title:game OR processed_title:ever))										
+
 Ricerca Base:
 DCG	                8,48316702
 Average Precision	0,622312834
@@ -72,9 +73,9 @@ Precisione	        0,6363636364
 ------------------------------------
 
 QUERY 3:
-Black ops 2 or Black ops 3 		
-								
-(processed_review:black OR processed_review:op) AND (processed_title:black OR processed_title:op)	
+UIN - l'utente vuole fare una comparazione tra due giochi, entrambi presenti all'interno del database di recensioni
+query naturale - Black ops 2 or Black ops 3 								
+query tradotta - (processed_review:black OR processed_review:op) AND (processed_title:black OR processed_title:op)	
 									
 Ricerca Base:
 DCG	                4,892789261
@@ -109,9 +110,9 @@ Precisione	        0,3076923077
 ------------------------------------
 
 QUERY 4:
-What is the worst RPG?	
-									
-((processed_review:worst AND processed_review:rpg) AND (processed_title:worst OR processed_title:rpg))	
+UIN - L'utente vuole sapere una caratteristica indipendente dal gioco, ma specifica ad una categoria.
+query naturale - What is the worst RPG?										
+query tradotta - ((processed_review:worst AND processed_review:rpg) AND (processed_title:worst OR processed_title:rpg))	
 									
 Ricerca Base:
 DCG	                2,745641241
@@ -146,9 +147,9 @@ Precisione	        0,1153846154
 ------------------------------------
 
 QUERY 5:
-Dragon Age Origins good plot 
-										
-((processed_review:dragon AND processed_review:age AND processed_review:origin AND processed_review:good AND processed_review:plot) AND (processed_title:dragon OR processed_title:age OR processed_title:origin OR processed_title:good OR processed_title:plot))
+UIN - L'utente vuole sapere una informazione specifica relativa ad un gioco specifico con una query poco chiara
+query naturale - Dragon Age Origins good plot 						
+query tradotta - ((processed_review:dragon AND processed_review:age AND processed_review:origin AND processed_review:good AND processed_review:plot) AND (processed_title:dragon OR processed_title:age OR processed_title:origin OR processed_title:good OR processed_title:plot))
 													
 Ricerca Base:
 DCG	                5,021911538
@@ -183,9 +184,10 @@ Precisione	        0,5909090909
 ------------------------------------
 
 QUERY 6:
-Resident Evil is it scary?
-										
-((processed_review:resid AND processed_review:evil AND processed_review:scari) AND (processed_title:resid OR processed_title:evil OR processed_title:scari))										
+UIN - L'utente vuole conoscere una informazione relativa alla sentiment su un gioco specifico, puntalizzandolo come una domanda.
+query naturale - Resident Evil is it scary?
+query tradotta - ((processed_review:resid AND processed_review:evil AND processed_review:scari) AND (processed_title:resid OR processed_title:evil OR processed_title:scari))										
+
 Ricerca Base:
 DCG	                0
 Average Precision	0
@@ -219,9 +221,9 @@ Precisione	        0,52
 ------------------------------------
 
 QUERY 7:
-Should I buy Far Cry Primal?
-										
-((processed_review:buy AND processed_review:far AND processed_review:cri AND processed_review:primal) AND (processed_title:buy OR processed_title:far OR processed_title:cri OR processed_title:primal))
+UIN - L'utente cerca una risposta alla propria domanda generica riguardo ad un gioco specifico.
+query naturale - Should I buy Far Cry Primal?
+query tradotta - ((processed_review:buy AND processed_review:far AND processed_review:cri AND processed_review:primal) AND (processed_title:buy OR processed_title:far OR processed_title:cri OR processed_title:primal))
 																	
 Ricerca Base:
 DCG	                0
@@ -256,9 +258,10 @@ Precisione	        0,7368421053
 ------------------------------------
 
 QUERY 8:
-How fun is Jackbox Party?	
-									
-((processed_review:fun AND processed_review:jackbox AND processed_review:parti) AND (processed_title:fun OR processed_title:jackbox OR processed_title:parti))										
+UIN - L'utente cerca informazioni relative alla sentiment di un gioco specifico.
+query naturale - How fun is Jackbox Party?	
+query processata - ((processed_review:fun AND processed_review:jackbox AND processed_review:parti) AND (processed_title:fun OR processed_title:jackbox OR processed_title:parti))										
+
 Ricerca Base:
 DCG	                0
 Average Precision	0
@@ -292,9 +295,9 @@ Precisione	        1
 -------------------------------------
 
 QUERY 9:
-Is Terraria worth playing with friends?	
-									
-((processed_review:terraria AND processed_review:worth AND processed_review:play AND processed_review:friend) AND (processed_title:terraria OR processed_title:worth OR processed_title:play OR processed_title:friend))	
+UIN - L'utente è interessato ad una caratteristica specifica di un gioco specifico.
+query naturale - Is Terraria worth playing with friends?						
+query tradotta - ((processed_review:terraria AND processed_review:worth AND processed_review:play AND processed_review:friend) AND (processed_title:terraria OR processed_title:worth OR processed_title:play OR processed_title:friend))	
 															
 Ricerca Base:
 DCG	                0
@@ -329,9 +332,10 @@ Precisione	        0,48
 -------------------------------------
 
 QUERY 10:
-No Mans Sky boring	
-									
-((processed_review:man AND processed_review:sky AND processed_review:bore) AND (processed_title:man OR processed_title:sky OR processed_title:bore))										
+UIN - L'utente cerca opinioni su un gioco specifico indicando meno informazioni possibili
+query naturale - No Mans Sky boring	
+query tradotta - ((processed_review:man AND processed_review:sky AND processed_review:bore) AND (processed_title:man OR processed_title:sky OR processed_title:bore))										
+
 Ricerca Base:
 DCG	                4,761859507
 Average Precision	0,8055555556

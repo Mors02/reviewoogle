@@ -6,8 +6,17 @@ python index.py
 Per far partire i benchmarks:
 python Benchmarks.py
 
-# Packages da installare
+#Utilizzo
+Per utilizzare l'applicazione è sufficiente far partire il index.py, poi un prompt permetterà di decidere il tipo di ricerca.
+L'utente scriverà la query di ricerca in linguaggio naturale e verranno stampati i risultati.
+Per la ricerca avanzata, i campi dovranno essere separati da (;), il nome del campo precede il contenuto e sono separati da (:).
+content: il contenuto della recensione
+title: il titolo della recensione
+processed: si può definire se preprocessare la query (yes/no)
+sentiment: si può definire se utilizzare la sentiment (yes/no)
+num_results: si può definire il numero di risultati ricevuti
 
+# Packages da installare
 -   transformers
 -   nltk
 -   whoosh
@@ -25,3 +34,7 @@ Un semplice search engine per recensioni di giochi di steam. Diviso in 5 version
  3) Ricerca processata con Sentiment Analysis
  4) Ricerca processata con Word2Vec
  5) Ricerca processata con Sentiment Analysis e Word2Vec
+
+#Benchmarks
+I risultati dei benchmarks sono presenti dentro a "Benchmark Results.txt", sono divisi per query e tipologia di ricerca.
+In fondo è presente un resoconto totale dei risultati.
