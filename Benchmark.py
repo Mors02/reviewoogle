@@ -1,6 +1,5 @@
 import Searcher
 import math
-'''
 queries = ["World at War are there custom zombie maps", 
            "What is the best game ever?", 
            "Black ops 2 or Black ops 3", 
@@ -11,8 +10,7 @@ queries = ["World at War are there custom zombie maps",
            "How fun is Jackbox Party?",
            "Is Terraria worth playing with friends?",
            "No Mans Sky boring"]
-'''
-queries = ["dota 2", "black ops 3"]
+
 Searcher.dont_print()
 
 
