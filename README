@@ -1,5 +1,11 @@
 [REVIEWOOGLE@1.0.0]
 
+# Istruzioni
+Dopo aver scaricato i pacchetti, per far partire il progetto:
+python index.py
+Per far partire i benchmarks:
+python Benchmarks.py
+
 # Packages da installare
 
 -   transformers
@@ -13,14 +19,9 @@
 -   gensim
 
 # Descrizione
-
-Un semplice search engine per recensioni di giochi di steam. Diviso in 4 versioni:
-
-1.  Solo ricerca semplice
-2.  Ricerca con Sentiment Analysis
-3.  Ricerca con Word2Vec
-4.  Ricerca con Sentiment Analysis e Word2Vec
-
-#Possibili benchmarks:
-1) World at War are there zombie custom maps? #la ricerca base fallisce sicuro, le altre dovrebbero trovare qualcosa
-2) 
+Un semplice search engine per recensioni di giochi di steam. Diviso in 5 versioni:
+ 1) Solo ricerca semplice
+ 2) Solo ricerca processata
+ 3) Ricerca processata con Sentiment Analysis
+ 4) Ricerca processata con Word2Vec
+ 5) Ricerca processata con Sentiment Analysis e Word2Vec

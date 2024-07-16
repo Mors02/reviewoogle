@@ -53,6 +53,7 @@ def word2vec_and_sentiment_search():
 
 @Timer
 def advanced_search():
+    print("Separa i campi con (;), per indicare il campo di ricerca utilizza (:) dopo il nome. Nome dei campi:\ncontent\ntitle\nnum_results\nsentiment\nprocessed")
     searchterm = queryInput()
     Searcher.advanced_search(searchterm)
 
@@ -63,20 +64,20 @@ def exitProgram():
 def queryInput():
     return input('Inserisci il testo da cercare\n >')
 
-functionMap = {'1': setup, '2': base_search, '3': processed_search, '4': processed_and_sentiment_search, '5': processed_and_title_search, '6': processed_and_word2vec_search, '7': word2vec_and_sentiment_search, '8': exitProgram, '9': advanced_search}
+functionMap = {'1': setup, '2': base_search, '3': processed_search, '4': processed_and_sentiment_search, '5': processed_and_title_search, '6': processed_and_word2vec_search, '7': word2vec_and_sentiment_search, '8': advanced_search, '9': exitProgram}
 #searchquery = "russia & riki & equipment & place title:(dota 2)"
 
 while(exit):
     selection = input(
-        '1. Riforma Index e Word2Vec\
-        \n2. Ricerca Base\
-        \n3. Ricerca Processata\
-        \n4. Ricerca Processata con Sentiment\
-        \n5. Ricerca Processata per Titolo\
-        \n6. Ricerca Processata con Word2Vec\
-        \n7. Ricerca Word2Vec e Sentiment\
-        \n8. Esci\n'
-    )
+'1. Riforma Index e Word2Vec\n\
+2. Ricerca base\n\
+3. Ricerca processata\n\
+4. Ricerca processata con sentiment\n\
+5. Ricerca processsata per titolo\n\
+6. Ricerca processata con Word2Vec\n\
+7. Ricerca Word2Vec e Sentiment\n\
+8. Ricerca Avanzata\n\
+9. Esci\n')
     functionToCall = functionMap[selection]
     functionToCall()
 
