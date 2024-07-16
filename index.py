@@ -54,7 +54,7 @@ def word2vec_and_sentiment_search():
 @Timer
 def advanced_search():
     searchterm = queryInput()
-    Searcher.advanced_search(searchquery)
+    Searcher.advanced_search()
 
 def exitProgram():
     global exit

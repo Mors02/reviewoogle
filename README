@@ -18,5 +18,6 @@ Un semplice search engine per recensioni di giochi di steam. Diviso in 4 version
  3) Ricerca con Word2Vec
  4) Ricerca con Sentiment Analysis e Word2Vec
 
-# Bugs
-- al momento il titolo "counter-strike" viene perso con il preprocessing
+#Possibili benchmarks:
+1) World at War are there zombie custom maps? #la ricerca base fallisce sicuro, le altre dovrebbero trovare qualcosa
+2) 
