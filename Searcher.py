@@ -13,6 +13,10 @@ import Worder
 howManyResults = 10
 printData = True
 
+def dont_print():
+    global printData
+    printData = False
+
 #DOCS:
 #https://whoosh.readthedocs.io/en/latest/searching.html
 
@@ -33,10 +37,13 @@ def base_search(query_terms):
         #COMBINE BOTH
         review_results.upgrade_and_extend(title_results)
 
+        formatted_results = []
         #PRINT
-        if (printData):
-            for rev in review_results:
+        for rev in review_results:
+            if (printData):
                 print(str(rev["id"]) + " | " + rev["title"] + ": " + rev["review"])
+            formatted_results.append(dict(rev))
+        return formatted_results
 
 def processed_search(query_terms):
 
@@ -66,10 +73,13 @@ def processed_search(query_terms):
         #BOOST A LITTLE THE TITLE
         review_results.upgrade(title_results)
 
+        formatted_results = []
         #PRINT
-        if (printData):
-            for rev in review_results:
+        for rev in review_results:
+            if (printData):
                 print(str(rev["id"]) + " | " + rev["title"] + ": " + rev["review"])
+            formatted_results.append(dict(rev))
+        return formatted_results
 
 
 def processed_and_sentiment_search(query_terms):
@@ -97,10 +107,13 @@ def processed_and_sentiment_search(query_terms):
         combined_results = sorted(combined_results, key=lambda item: item["score"], reverse=True)
 
         #PRINT
-        if (printData):
-            for rev in combined_results:
-                #print(rev)
+        formatted_results = []
+        
+        for rev in combined_results:
+            if (printData):
                 print(str(rev["score"]) + " | " + rev["title"] + ": " + rev["review"] + " /" + str(rev["sentiment"]))
+            formatted_results.append(dict(rev))
+        return formatted_results
 
 def title_search(query_terms, title):
 
@@ -127,6 +140,7 @@ def title_search(query_terms, title):
         if (printData):
             for rev in review_results:
                 print(str(rev.score) + " | " + rev["title"] + ": " + rev["review"])
+        return review_results
 
 def word2vec_and_sentiment_search(query_terms):
     print("RICERCA PROCESSATA, SENTIMENT E WORD2VEC")
@@ -153,10 +167,13 @@ def word2vec_and_sentiment_search(query_terms):
         combined_results = sorted(combined_results, key=lambda item: item["score"], reverse=True)
 
         #PRINT
-        if (printData):
-            for rev in combined_results:
-                #print(rev)
+        formatted_results = []
+        
+        for rev in combined_results:
+            if (printData):
                 print(str(rev["score"]) + " | " + rev["title"] + ": " + rev["review"] + " /" + str(rev["sentiment"]))
+            formatted_results.append(dict(rev))
+        return formatted_results
 
 def processed_and_word2vec_search(query_terms):
     print("RICERCA PROCESSATA E WORD2VEC")
@@ -177,9 +194,13 @@ def processed_and_word2vec_search(query_terms):
         review_results = searcher.search(q, limit=howManyResults)
 
         #PRINT
-        if (printData):
-            for rev in review_results:
+        formatted_results = []
+        
+        for rev in review_results:
+            if (printData):
                 print(str(rev.score) + " | " + rev["title"] + ": " + rev["review"])  
+            formatted_results.append(rev)
+        return formatted_results
 
 def advanced_search(query_terms):
     return

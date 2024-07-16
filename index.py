@@ -63,9 +63,7 @@ def exitProgram():
 def queryInput():
     return input('Inserisci il testo da cercare\n >')
 
-searchterm = "dota 2 good game"
-title = "dota 2"
-functionMap = {'1': setup, '2': base_search, '3': processed_search, '4': processed_and_sentiment_search, '5': processed_and_title_search, '6': word2vec_and_sentiment_search, '7': exitProgram, '8': advanced_search}
+functionMap = {'1': setup, '2': base_search, '3': processed_search, '4': processed_and_sentiment_search, '5': processed_and_title_search, '6': processed_and_word2vec_search, '7': word2vec_and_sentiment_search, '8': exitProgram, '9': advanced_search}
 #searchquery = "russia & riki & equipment & place title:(dota 2)"
 
 while(exit):
@@ -75,8 +73,9 @@ while(exit):
 3. Ricerca processata\n\
 4. Ricerca processata con sentiment\n\
 5. Ricerca processsata per titolo\n\
-6. Ricerca Word2Vec e Sentiment\n\
-7. Esci\n')
+6. Ricerca processata con Word2Vec\n\
+7. Ricerca Word2Vec e Sentiment\n\
+8. Esci\n')
     functionToCall = functionMap[selection]
     functionToCall()
 
