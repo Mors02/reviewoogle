@@ -12,16 +12,20 @@ def process(text, removeStopwords=False, withStemming=False):
         #CREATE THE TOKEN LIST FOR THE TEXT
         tokens = nltk.word_tokenize(text)
         #REMOVE PUNCTUATION
-        tokens = [word.lower() for word in tokens if word.isalpha()]
+        tokens = [word.lower() for word in tokens]
+        custom_tokens = []
+        for token in tokens:
+                if token.isalpha() or token in ['&', '|']:
+                        custom_tokens.append(token.lower())
 
         #REMOVE STOPWORDS
         if (removeStopwords):
                 stop_words = set(stopwords.words("english"))
-                tokens = [parola for parola in tokens if parola.lower() not in stop_words]
+                custom_tokens = [parola for parola in tokens if parola.lower() not in stop_words]
 
         #STEMMING
         if (withStemming):
                 stemmer = PorterStemmer()
-                tokens = [stemmer.stem(token) for token in tokens]
+                custom_tokens = [stemmer.stem(token) for token in tokens]
 
-        return tokens
+        return custom_tokens

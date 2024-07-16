@@ -203,44 +203,61 @@ def processed_and_word2vec_search(query_terms):
         return formatted_results
 
 def advanced_search(query_terms):
-    return
-''' NON FUNZIONA MOLTO BENE
+    query_obj = {}
+    terms = query_terms.split("; ")
+    for term in terms:
+        term_array = term.split(": ")        
+        query_obj[term_array[0]] = term_array[1]
     ix = open_dir(indexPath)
+    processed_query = ''    
 
-    processed_query = Preprocessor.process(query_terms, True, True)
-    print(processed_query)
+    if 'content' in query_obj:
+        processed_query = query_obj['content']
+
+    if 'processed' in query_obj and (query_obj['processed'] == 'yes' or query_obj['processed'] == 'yes;') and 'content' in query_obj:
+        processed_query = Preprocessor.process(query_obj['content'], True, True)
+        processed_query = " ".join(processed_query)
     #expanded_query = Worder.expansion(model, processed_query)
-    shouldSentiment = input("Ricerca per sentiment - 1. Si     2. No\n> ")
-    if (shouldSentiment == "1"):
-        retrieved_sentiment = Sentiment.classify(query_terms)[0][0]
+    if ('sentiment' in query_obj and (query_obj['sentiment'] == 'yes' or query_obj['sentiment'] == 'yes;') and 'content' in query_obj):
+        retrieved_sentiment = Sentiment.classify(query_obj['content'])[0][0]
+    processed_query = processed_query.replace("|", "OR")
+    processed_query = processed_query.replace("&", "AND")
 
-    shouldWord2vec = input("Espansione con word2vec - 1. Si     2. No\n> ")
-    if (shouldWord2vec == "1"):
-        model = Worder.load()
-        query_terms = Worder.expansion(model, query_terms.split())
-        print(query_terms)
-    print(query_terms)
-    qp = QueryParser("processed_review", schema=ix.schema).parse(query_terms)
-    print(qp)
+    if 'processed' in query_obj and (query_obj['processed'] == 'yes' or query_obj['processed'] == 'yes;') and 'content' in query_obj:
+        q = QueryParser("processed_review", schema=ix.schema).parse(processed_query)
+    else:
+        q = QueryParser("review", schema=ix.schema).parse(processed_query)
+
+    if 'title' in query_obj:
+        tq = QueryParser('title', schema=ix.schema).parse(query_obj['title'])
+        if 'content' in query_obj:
+            q = And([q, tq])
+        else:
+            q = tq
+    print(q)
+
 
     #tp = QueryParser("processed_title", schema=ix.schema, group=syntax.OrGroup).parse(query_terms)    
 
     with ix.searcher() as searcher:
         #SEARCH THE QUERY
-        review_results = searcher.search(qp, limit=howManyResults)
+        res_num = howManyResults
+        if 'num_results' in query_obj:
+            res_num = int(query_obj['num_results'])
+        review_results = searcher.search(q, limit=res_num)
 
-        if (shouldSentiment == "1"):
+        if ('sentiment' in query_obj and (query_obj['sentiment'] == 'yes' or query_obj['sentiment'] == 'yes;')):
             combined_results = reorder_results_with_sentiment(review_results, retrieved_sentiment)
             review_results = combined_results
 
         #PRINT
         if (printData):
             for rev in review_results:
-                if (shouldSentiment != "1"):
-                    print(str(rev.score) + " | " + rev["title"] + ": " + rev["review"])  
+                if ('sentiment' in query_obj and (query_obj['sentiment'] == 'yes' or query_obj['sentiment'] == 'yes;')):
+                    print(str(rev["score"]) + " | " + rev["title"] + ": " + rev["review"] + " /" + rev["sentiment"])                   
                 else:
-                    print(str(rev["score"]) + " | " + rev["title"] + ": " + rev["review"] + " /" + rev["sentiment"])
-'''
+                    print(str(rev.score) + " | " + rev["title"] + ": " + rev["review"])  
+                    
 
 def reorder_results_with_sentiment(review_results, retrieved_sentiment):
     combined_results = []

@@ -2,3 +2,4 @@ whoosh
 __pycache__
 indexdir
 word2vec
+results.txt
