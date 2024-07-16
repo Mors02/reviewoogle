@@ -2,24 +2,24 @@ import Indexer
 import Searcher
 import Worder
 import time
-from config import filename, indexPath 
+from config import filename, indexPath
 
 def Timer(func):
     def wrapper(*args, **kwargs):
         start = time.time()
         func(*args, **kwargs)
         end = time.time()
-        print("RUN TIMER: " + str(end - start))
+        print("RUN TIMER: " + str(end - start) + "\n")
     return wrapper
 
 exit = True
 
 def setup():
-    #TO INDEX AND SETUP WORD2VEC
+    # TO INDEX AND SETUP WORD2VEC
     Indexer.index(filename, indexPath)
     Worder.store()
 
-#TO SEARCH (DIVIDED BY SEARCH TYPE)
+# TO SEARCH (DIVIDED BY SEARCH TYPE)
 @Timer
 def base_search():
     searchterm = queryInput()
@@ -54,7 +54,7 @@ def word2vec_and_sentiment_search():
 @Timer
 def advanced_search():
     searchterm = queryInput()
-    Searcher.advanced_search()
+    Searcher.advanced_search(searchterm)
 
 def exitProgram():
     global exit
@@ -68,14 +68,15 @@ functionMap = {'1': setup, '2': base_search, '3': processed_search, '4': process
 
 while(exit):
     selection = input(
-'1. Riforma Index e Word2Vec\n\
-2. Ricerca base\n\
-3. Ricerca processata\n\
-4. Ricerca processata con sentiment\n\
-5. Ricerca processsata per titolo\n\
-6. Ricerca processata con Word2Vec\n\
-7. Ricerca Word2Vec e Sentiment\n\
-8. Esci\n')
+        '1. Riforma Index e Word2Vec\
+        \n2. Ricerca Base\
+        \n3. Ricerca Processata\
+        \n4. Ricerca Processata con Sentiment\
+        \n5. Ricerca Processata per Titolo\
+        \n6. Ricerca Processata con Word2Vec\
+        \n7. Ricerca Word2Vec e Sentiment\
+        \n8. Esci\n'
+    )
     functionToCall = functionMap[selection]
     functionToCall()
 

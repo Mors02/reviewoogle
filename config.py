@@ -1,3 +1,5 @@
-filename = './dataset/compact_dataset.csv'
+# filename = './dataset/dataset.csv'
+filename = './dataset/compact.csv'
+compact = './dataset/compact.csv'
 indexPath = './indexdir'
 word2vecPath = './word2vec'

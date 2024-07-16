@@ -1,22 +1,25 @@
 [REVIEWOOGLE@1.0.0]
 
 # Packages da installare
-- transformers
-- nltk
-- whoosh
-- torch
-- xformers
-- numpy
-- scipy
-- pylib-openblas
-- gensim
+
+-   transformers
+-   nltk
+-   whoosh
+-   torch
+-   xformers
+-   numpy
+-   scipy
+-   pylib-openblas
+-   gensim
 
 # Descrizione
+
 Un semplice search engine per recensioni di giochi di steam. Diviso in 4 versioni:
- 1) Solo ricerca semplice
- 2) Ricerca con Sentiment Analysis
- 3) Ricerca con Word2Vec
- 4) Ricerca con Sentiment Analysis e Word2Vec
+
+1.  Solo ricerca semplice
+2.  Ricerca con Sentiment Analysis
+3.  Ricerca con Word2Vec
+4.  Ricerca con Sentiment Analysis e Word2Vec
 
 #Possibili benchmarks:
 1) World at War are there zombie custom maps? #la ricerca base fallisce sicuro, le altre dovrebbero trovare qualcosa

@@ -11,7 +11,6 @@ def load():
     except:
         print("Modello non inizializzato.")
     
-
 def expansion(model, query, preprocess=False):
     expanded_query = []
     if (preprocess):
@@ -21,7 +20,7 @@ def expansion(model, query, preprocess=False):
             similar_words = model.wv.most_similar(word, topn=3)            
             expanded_query.extend(['(', word, 'OR', similar_words[0][0], ')'])
         except KeyError:
-            # se la parola non è nel vocabolario
+            # Se la parola non è nel vocabolario
             expanded_query.append(word)
     return " ".join(expanded_query)
 
@@ -32,7 +31,7 @@ def store():
 
 class ReviewCorpus:
     def __iter__(self):
-        #corpus_path = datapath('lee_background.cor')
+        # corpus_path = datapath('lee_background.cor')
         with open(filename, 'r') as csvfile:
             datareader = csv.reader(csvfile)
             for row in datareader:
